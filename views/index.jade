@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  p#data none
+  audio#scream(preload='auto')
+    source(src='audio/scream.mp3',type='audio/mpeg')
+
