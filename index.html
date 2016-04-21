@@ -3,9 +3,21 @@
 	<head>
         <meta charset="utf-8" />
 		<title>Index</title>
-		<script src="/socket.io/socket.io.js"></script>
-        <script src='index.js'></script>
+		<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
 	</head>
 	<body>
+        <script type='text/javascript'>
+            var socket = io.connect('http://localhost:8080/');
+
+            socket.on('connect', function() {
+                console.log("Connected");
+            });
+
+            // Receive a message
+            socket.on('message', function(data) {
+                console.log('message received');
+});
+
+        </script>
 	</body>
 </html>
