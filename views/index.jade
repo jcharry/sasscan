@@ -1,9 +1,17 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
-  p#data none
-  audio#scream(preload='auto')
-    source(src='audio/scream.mp3',type='audio/mpeg')
+    h1 Button Status
+    p#data none
+    audio#scream(preload='auto')
+        source(src='audio/scream.mp3',type='audio/mpeg')
+    audio#scream1(preload='auto')
+        source(src='audio/scream1.mp3',type='audio/mpeg')
+    audio#seriously1(preload='auto')
+        source(src='audio/seriously1.mp3',type='audio/mpeg')
+    audio#seriously2(preload='auto')
+        source(src='audio/seriously2.mp3',type='audio/mpeg')
+    audio#shotgun(preload='auto')
+        source(src='audio/shotgun.mp3',type='audio/mpeg')
+    img#disappointed(src='images/disappointed.gif')
 
