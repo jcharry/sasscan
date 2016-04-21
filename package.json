@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "onoff": "^1.0.4"
+    "onoff": "^1.0.4",
+    "socket.io": "^1.4.5"
   }
 }
