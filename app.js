@@ -8,6 +8,7 @@ var Gpio = require('onoff').Gpio;
 var button = new Gpio(18, 'in', 'both');
 
 
+
 // Any normal http request
 function requestHandler(req, res) {
     //console.log(req);
@@ -37,12 +38,19 @@ io.sockets.on('connection', function (socket) {
 
     console.log("We have a new client: " + socket.id);
 
-    var timer = setInterval(function() {
-        var state = button.readSync();
-        if (state === 0) {
-            io.sockets.emit('message', state);
-        }
-    },200);
+    button.watch(function(err, value) {
+        if (err) console.log(err);
+
+        console.log(value);
+
+    });
+
+    //var timer = setInterval(function() {
+        //var state = button.readSync();
+        //if (state === 0) {
+            //io.sockets.emit('message', state);
+        //}
+    //},200);
 	
 		// When this user "send" from clientside javascript, we get a "message"
 		// client side: socket.send("the message");  or socket.emit('message', "the message");
