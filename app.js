@@ -7,7 +7,7 @@ var server = require('http').Server(app);
 //var httpServer = http.createServer(requestHandler);
 
 var Gpio = require('onoff').Gpio;
-var button = new Gpio(18, 'in', 'falling');
+var button = new Gpio(18, 'in', 'rising');
 
 app.use(express.static(__dirname + '/static'));
 
