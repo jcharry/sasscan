@@ -2,13 +2,21 @@ var badImages = [];
 //var badImages = ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.gif', '6.jpg', '7.jpg', ];
 var goodImages = [];
 var overlayImages = [];
+var audio = [];
+
+var sayings = ['lessen your leavings', 'slash your trash', 'trim your trash', 'dwindle your rubbish','step down your scraps', 'think about your trash'];
+
 window.addEventListener('load', function() {
-    for (var i = 0; i < 12; i++) {
+    for (var i = 0; i < 21; i++) {
         badImages.push(document.getElementById(i));
     }
 
     for (var i = 0; i < 9; i++) {
         goodImages.push(document.getElementById('good'+i));
+    }
+
+    for (var i = 0; i < 8; i++) {
+        audio.push(document.getElementById('audio' + i));
     }
 
     overlayImages.push(document.getElementById('buzzimg'));
@@ -28,69 +36,66 @@ var playing = false;
 socket.on('message', function(data) {
 
     if (playing === false) {
-        document.getElementById('scream').play();
+        playing = true;
+        var randInt = randomIntFromInterval(0, audio.length - 1);
+        audio[randInt].play();
         setTimeout(startShow, 300);
     }
 
 });
 
 function startShow() {
-    // Start the show!
-    if (playing === false) {
-        // Start the show 
-        playing = true;
+    // Start the show 
+    playing = true;
 
 
-        imageCounter = 0;
-        var timer = setInterval(function() {
-            if (imageCounter > badImages.length) {imageCounter = 0;}
-            // Hide all images
-            hideAll(badImages);
-            hideAll(overlayImages);
-            document.getElementById('buzz').play();
-            badImages[imageCounter].style.display = 'block';
-            overlayImages[0].style.display = 'block';
-            imageCounter++;
-        }, 1000);
+    imageCounter = 0;
+    var timer = setInterval(function() {
+        if (imageCounter > badImages.length) {imageCounter = 0;}
+        // Hide all images
+        hideAll(badImages);
+        hideAll(overlayImages);
+        document.getElementById('buzz').play();
+        var randInt = randomIntFromInterval(0, badImages.length -1);
+        badImages[randInt].style.display = 'block';
+        overlayImages[0].style.display = 'block';
+        imageCounter++;
+    }, 1000);
 
-        // Stop showing bad images
-        // Show good image, then final screen
+    // Stop showing bad images
+    // Show good image, then final screen
+    setTimeout(function() {
+        clearInterval(timer);
+        hideAll(badImages);
+        hideAll(overlayImages);
+
+        //Show good image
+        randInt = randomIntFromInterval(0, goodImages.length -1);
+        console.log(randInt);
+        document.getElementById('ding').play();
+        overlayImages[1].style.display = 'block';
+        goodImages[randInt].style.display = 'block';
         setTimeout(function() {
-            clearInterval(timer);
-            hideAll(badImages);
             hideAll(overlayImages);
-
-            //Show good image
-            randInt = randomIntFromInterval(0,8);
-            console.log(randInt);
-            document.getElementById('ding').play();
-            overlayImages[1].style.display = 'block';
-            goodImages[randInt].style.display = 'block';
+            hideAll(goodImages);
+            document.getElementById('finalscreen').style.display = 'flex';
+            var randSayingInt = randomIntFromInterval(0, sayings.length - 1);
+            document.getElementById('finalmessage').innerHTML = sayings[randSayingInt];
             setTimeout(function() {
-                hideAll(overlayImages);
-                hideAll(goodImages);
-                document.getElementById('finalscreen').style.display = 'flex';
+                // show final screen
+
                 setTimeout(function() {
-                    // show final screen
-
-                    setTimeout(function() {
-                        document.getElementById('finalscreen').style.display = 'none';
-                        document.getElementById('startscreen').style.display = 'block';
-                    }, 2000);
-
-                    playing = false;
+                    document.getElementById('finalscreen').style.display = 'none';
+                    document.getElementById('startscreen').style.display = 'block';
                 }, 2000);
 
+                playing = false;
             }, 2000);
-        }, 5900);
 
-        // When done, set playing = false again
-    }
-    else {
-        console.log('currently playing');
-        // We're playing, so ignore
-        // any inputs for now
-    }
+        }, 2000);
+    }, 4900);
+
+    // When done, set playing = false again
 
 }
 
