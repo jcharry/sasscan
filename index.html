@@ -3,22 +3,45 @@
 	<head>
         <meta charset="utf-8" />
 		<title>Index</title>
+        <link rel='stylesheet' href='style.css'>
 		<script src="socket.io.js"></script>
+
 	</head>
 	<body>
-        <script src='script.js'>
-        //<script type='text/javascript'>
-        //    var socket = io.connect('http://localhost:8080/');
+        <script src='script.js'></script>
+        <audio id='buzz' src='audio/buzz.mp3' preload='auto'></audio>
+        <audio id='ding' src='audio/ding.mp3' preload='auto'></audio>
+        <audio id='scream' src='audio/scream.mp3' preload='auto'></audio> 
 
-        //    socket.on('connect', function() {
-        //        console.log("Connected");
-        //    });
 
-        //    // Receive a message
-        //    socket.on('message', function(data) {
-        //        console.log('message received');
-});
-
-        //</script>
+        <div id='startscreen'></div>
+        <img class='fullimg' id='currentImage' src=''/>
+        <img class='fullimg' id='0' src='images/0.jpg'>
+        <img class='fullimg' id='1' src='images/1.jpg'>
+        <img class='fullimg' id='2' src='images/2.jpg'>
+        <img class='fullimg' id='3' src='images/3.jpg'>
+        <img class='fullimg' id='4' src='images/4.jpg'>
+        <img class='fullimg' id='5' src='images/5.gif'>
+        <img class='fullimg' id='6' src='images/6.jpg'>
+        <img class='fullimg' id='7' src='images/7.jpg'>
+        <img class='fullimg' id='8' src='images/8.jpg'>
+        <img class='fullimg' id='9' src='images/9.jpg'>
+        <img class='fullimg' id='10' src='images/10.jpg'>
+        <img class='fullimg' id='11' src='images/11.jpg'>
+        <img class='fullimg' id='12' src='images/12.jpg'>
+        <img class='fullimg' id='good0' src='images/bags.jpg'>
+        <img class='fullimg' id='good1' src='images/boards.jpg'>
+        <img class='fullimg' id='good2' src='images/bottles.jpg'>
+        <img class='fullimg' id='good3' src='images/coffee.jpg'>
+        <img class='fullimg' id='good4' src='images/food.jpg'>
+        <img class='fullimg' id='good5' src='images/plates.jpg'>
+        <img class='fullimg' id='good6' src='images/soap.jpg'>
+        <img class='fullimg' id='good7' src='images/storage.jpg'>
+        <img class='fullimg' id='good8' src='images/towels.jpg'>
+        <img id='buzzimg' class='overlayimg' src='images/buzz.png'>
+        <img id='dingimg' class='overlayimg' src='images/ding.png'>
+        <div id='finalscreen'>
+            <p>THINK ABOUT YOUR TRASH</p>
+        </div>
 	</body>
 </html>
