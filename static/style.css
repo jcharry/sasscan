@@ -16,10 +16,17 @@
     background-color: black;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
+
 #finalscreen p {
     color: white;
+}
+#finalmessage {
     font-size: 24pt;
+}
+#handle {
+    font-size: 18pt;
 }
 .fullimg {
     display: none;

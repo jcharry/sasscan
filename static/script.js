@@ -7,7 +7,7 @@ var audio = [];
 var sayings = ['lessen your leavings', 'slash your trash', 'trim your trash', 'dwindle your rubbish','step down your scraps', 'think about your trash'];
 
 window.addEventListener('load', function() {
-    for (var i = 0; i < 21; i++) {
+    for (var i = 0; i < 19; i++) {
         badImages.push(document.getElementById(i));
     }
 
@@ -15,7 +15,7 @@ window.addEventListener('load', function() {
         goodImages.push(document.getElementById('good'+i));
     }
 
-    for (var i = 0; i < 8; i++) {
+    for (var i = 0; i < 7; i++) {
         audio.push(document.getElementById('audio' + i));
     }
 
@@ -37,9 +37,10 @@ socket.on('message', function(data) {
 
     if (playing === false) {
         playing = true;
-        var randInt = randomIntFromInterval(0, audio.length - 1);
-        audio[randInt].play();
-        setTimeout(startShow, 300);
+        //var randInt = randomIntFromInterval(0, audio.length - 1);
+        //audio[randInt].play();
+        startShow();
+        //setTimeout(startShow, 300);
     }
 
 });
@@ -55,10 +56,15 @@ function startShow() {
         // Hide all images
         hideAll(badImages);
         hideAll(overlayImages);
-        document.getElementById('buzz').play();
+        //document.getElementById('buzz').play();
+        
         var randInt = randomIntFromInterval(0, badImages.length -1);
         badImages[randInt].style.display = 'block';
         overlayImages[0].style.display = 'block';
+
+        var randAudioInt = randomIntFromInterval(0, audio.length - 1);
+        audio[randAudioInt].play();
+
         imageCounter++;
     }, 1000);
 
@@ -82,8 +88,8 @@ function startShow() {
             var randSayingInt = randomIntFromInterval(0, sayings.length - 1);
             document.getElementById('finalmessage').innerHTML = sayings[randSayingInt];
             setTimeout(function() {
+                
                 // show final screen
-
                 setTimeout(function() {
                     document.getElementById('finalscreen').style.display = 'none';
                     document.getElementById('startscreen').style.display = 'block';
@@ -91,9 +97,8 @@ function startShow() {
 
                 playing = false;
             }, 2000);
-
         }, 2000);
-    }, 4900);
+    }, 3900);
 
     // When done, set playing = false again
 
